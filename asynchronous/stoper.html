@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>Simple setInterval clock</title>
+    <style>
+        p {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+<p class="clock"></p>
+<button class="start">Start</button>
+<button class="stop">Stop</button>
+<button class="reset">Reset</button>
+<script>
+
+    const guzikStop = document.querySelector(".stop");
+    const guzikStart = document.querySelector(".start");
+    const guzikReset = document.querySelector(".reset");
+    const displ =  document.querySelector('.clock');
+
+    displ.textContent = 'nacisnij start';
+
+    let  startTime;
+    let myInterval;
+
+    let pozostaloscCzasu = '';
+    function countTime() {
+       let tim = Date.now()-startTime;
+       displ.textContent = pozostaloscCzasu +tim;
+    }
+
+    guzikStart.addEventListener('click', function () {
+         startTime = Date.now();
+        countTime();
+       myInterval = setInterval(countTime, 100);
+       guzikStart.disabled = true;
+    });
+
+    guzikStop.addEventListener('click', function () {
+        let zastanyWynik = displ.textContent;
+        pozostaloscCzasu = parseInt(zastanyWynik);
+        clearInterval(myInterval);
+        guzikStart.disabled = false;
+    });
+
+    guzikReset.addEventListener('click', function () {
+       pozostaloscCzasu = 0;
+       displ.textContent = pozostaloscCzasu;
+    });
+</script>
+</body>
+</html>

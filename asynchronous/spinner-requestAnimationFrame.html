@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spinner, zabawa z requestAnimationFrame()</title>
+
+    <style>
+        html{
+            background-color: #eeeeee;
+            height: 100%;
+        }
+
+        body{
+            height: inherit;
+            background-color: red;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div{
+            display: inline-block;
+            font-size: 10rem;
+        }
+    </style>
+</head>
+<body>
+<p>This is my page</p>
+<div class="best"> ↻ </div>
+<hr />
+<div class="jeden">
+    jeden
+</div>
+<hr />
+<div class="dwa"> dwa </div>
+<script>
+    const spinner = document.querySelector('.best');
+    let rotateCount =0;
+    let startTime = null;
+    let rAF;
+
+
+    //a timestamp value, that represents the time
+    // since the requestAnimationFrame() started running.
+    function draw(timeStamp) {
+        if (!startTime) {
+            startTime = timeStamp;
+        }
+
+        rotateCount = (timeStamp - startTime) / 3;
+
+        if (rotateCount > 359){
+            rotateCount %= 360;
+        }
+
+        if (rotateCount<90){
+            rotateCount /= 15;
+        } else if(rotateCount>=180 && rotateCount<270){
+            rotateCount *= 1.5;
+        } else {
+            rotateCount *= 30;
+        }
+
+        spinner.style.transform = `rotate(${rotateCount}deg)`;
+
+        rAF = requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    let kreci = true;
+    document.body.addEventListener('click', () =>{
+
+        if (kreci){
+        cancelAnimationFrame(rAF);
+        kreci = false;
+        } else {
+            draw();
+            kreci = true;
+        }
+    })
+    const jeden = document.querySelector('.jeden');
+    let licz = 0;
+    function  rysuj(){
+        jeden.style.transform = `rotate(${licz}deg)`;
+        licz -= 2;
+    }
+    rysuj();
+    setInterval(rysuj, 100);
+
+    const dwa = document.querySelector('.dwa');
+    let kaunt = 0;
+    function dro() {
+        dwa.style.transform = `rotate(${kaunt}deg)`;
+        kaunt += 1;
+
+        requestAnimationFrame(dro);
+    }
+    dro();
+
+</script>
+</body>
+</html>

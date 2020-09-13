@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Events: Task 3</title>
+    <style>
+        p {
+            color: purple;
+            margin: 0.5em 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            margin: 20px 0 20px 20px;
+        }
+
+        .button-bar {
+            padding: 20px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+
+<section class="preview">
+</section>
+
+<div class="button-bar">
+    <button data-color="red">Red</button>
+    <button data-color="yellow">Yellow</button>
+    <button data-color="green">Green</button>
+    <button data-color="purple">Purple</button>
+</div>
+
+</body>
+<script>
+
+    let buttonBar = document.querySelector('.button-bar');
+    let section = document.querySelector('section');
+
+    // Add your code here
+
+
+    let red = document.getElementsByTagName('button')[0];
+    let yellow = document.getElementsByTagName('button')[1];
+    let green = document.getElementsByTagName('button')[2];
+    let purple = document.getElementsByTagName('button')[3];
+
+    let buttons = document.querySelectorAll('button');
+
+    function colourChange(ev) {
+        buttonBar.style.backgroundColor = ev.target.dataset.color;
+    }
+
+    for (let i=0; i<buttons.length; i++){
+        buttons[i].onclick = colourChange;
+    }
+
+    buttons.forEach(colCh);
+
+</script>
+
+</html>

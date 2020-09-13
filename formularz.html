@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
+
+        .lowOrHi {
+            color: olivedrab;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Number guessing game</h1>
+
+<p>Wpisz swoje imie w formularz</p>
+
+<div class="form">
+    <label for="formularz-imie">Wpisz swoje imie</label>
+    <input type="text" id="formularz-imie" class="formularz">
+    <input type="submit" value="Wprowadz" class="guzikWprowadz">
+</div>
+
+    <p class="imieParagraf"></p>
+
+
+<script>
+
+    const formularz = document.querySelector('.formularz');
+    const guzikWprowadz = document.querySelector('.guzikWprowadz');
+    const paragrafImie = document.querySelector('.imieParagraf');
+
+
+    function wypisanieImienia() {
+        let imieDoParagrafu = Number(formularz.textContent);
+        paragrafImie.textContent =+ imieDoParagrafu +' ';
+        formularz.value = '';
+        formularz.focus();
+    }
+
+    guzikWprowadz.addEventListener('click', wypisanieImienia);
+
+</script>
+</body>
+</html>

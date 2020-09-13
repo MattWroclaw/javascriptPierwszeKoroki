@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Simple synchronous JavaScript example</title>
+</head>
+<body>
+<button>Click me</button>
+<script>
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', () => {
+        let firstInfo = document.createElement('p');
+        let start1 = Date.now();
+        firstInfo.textContent = 'Uruchomienie metody';
+        document.body.appendChild(firstInfo);
+
+        let myDate;
+        for(let i = 0; i < 10000000; i++) {
+            let date = new Date();
+            myDate = date
+        }
+
+        console.log(myDate);
+
+        let pElem = document.createElement('p');
+        pElem.textContent = 'This is a newly-added paragraph.';
+        document.body.appendChild(pElem);
+
+        let stop1 = Date.now();
+        let res = stop1-start1;
+        firstInfo.textContent = "Liczenie 1000 0000 dat zajęło"+ res;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Functions: Task 2</title>
+    <style>
+        p {
+            color: purple;
+            margin: 0.5em 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body>
+
+<section class="preview">
+
+</section>
+
+<canvas width="600" height="450" style="border: darkorange 1px solid">
+
+</canvas>
+
+</body>
+<script>
+    let canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let x = 50;
+    let y = 60;
+    let width = 100;
+    let height = 75;
+    let color = 'blue';
+
+    // Add your code here
+    function draw(){
+        ctx.clearRect(0,0,width, height);
+        for (let i=0; i<100; i++){
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(225,0,0,0.5';
+            ctx.arc(losowyNumer(width),losowyNumer(height),
+            losowyNumer(50), 0, 2*Math.PI);
+            ctx.fill();
+        }
+
+    }
+
+    function losowyNumer(number){
+        return Math.floor(Math.random()*number);
+    }
+    // Don't edit the code below here!
+
+    const section = document.querySelector('section');
+</script>
+
+</html>

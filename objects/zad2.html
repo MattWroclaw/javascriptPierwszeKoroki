@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Object basics: Task 2</title>
+    <style>
+        p {
+            color: purple;
+            margin: 0.5em 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="../styles.css"/>
+</head>
+
+<body>
+
+<section class="preview">
+
+
+</section>
+
+</body>
+<script>
+    let bandInfo;
+
+    // Add your code here
+
+    band = {
+        name: 'Szaza',
+        nationality: 'Polska',
+        genre: 'disco',
+        members: 5,
+        formed: 1840,
+        split: false,
+        albums: [
+            {
+                name: 'gorace lato',
+                released: 1987
+            },
+            {
+                name: 'sloneczne dni',
+                released: 1990
+            },
+            {
+                name: 'wakacje',
+                released: 1994
+            }
+        ]
+
+    };
+
+    bandInfo = `Biografia zespołu ${band.name}:
+nazwa ${band.name};
+graja piosenki gatunku ${band.genre}.
+Kilka płyt: `
+
+    const ul = document.createElement('ul');
+    const body = document.querySelector('body');
+    body.appendChild(ul);
+    for (let i=0; i<band.albums.length; i++) {
+        let listItem = document.createElement('li');
+        listItem.textContent =
+        `Nazwa albumu ${band.albums[i].name}
+        rok wydania ${band.albums[i].released}`;
+        ul.appendChild(listItem);
+    }
+
+
+    // Don't edit the code below here!
+
+    const section = document.querySelector('section');
+    let para1 = document.createElement('p');
+    para1.textContent = bandInfo;
+    section.appendChild(para1);
+</script>
+
+</html>

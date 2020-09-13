@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Our superheroes</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json
+
+<header>
+
+</header>
+
+<section>
+
+</section>
+
+<script>
+    const header = document.querySelector('header');
+    const section = document.querySelector('section');
+
+    let requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+    let request = new XMLHttpRequest(); //create a new request object instance from the XMLHttpRequest constructor, using the new keyword
+
+    request.open('GET', requestURL); //open the request using the open() method.
+
+    // wersja A = konnsertuje na JSONA
+    // request.responseType = 'json'; //  setting the responseType to JSON, so that XHR knows that the server will be returning JSON, and that this should be converted behind the scenes into a JavaScript object.
+
+    //B konsertuje na text  i wtedy trzeba sparsować na JSONA za pomocą JSON.parse(xx);
+    request.responseType = 'text';
+
+
+    request.send(); //we send the request with the send()
+
+    // waiting for the response to return from the server, then dealing with it.
+    request.onload = function () { //onload - to event handler.  doing it this way guarantees that request.response will definitely be available when we come to try to do something with it
+        const  superHeroesText = request.response; //przechowuje odpowiedź z servera
+        // const  superHeroes = request.response; //przechowuje odpowiedź z servera
+        const superHeroes = JSON.parse(superHeroesText); // text z odpowedzi servera konwertuje na obiekt
+        populateHeader(superHeroes); //superHeroes to obiekt JS zbudowany z Jsona
+        showHeroes(superHeroes);
+    }
+
+    function populateHeader(jsonObj) {
+        const myH1 = document.createElement('h1');
+        myH1.textContent = jsonObj['squadName'];
+        header.appendChild(myH1);
+
+        const myPara = document.createElement('p');
+        myPara.textContent = 'Hometown ' + jsonObj['homeTown'] + ' // Formed: ' + jsonObj['formed'];
+        header.appendChild(myPara);
+    }
+
+    function showHeroes(jsonObj) {
+        const heroes = jsonObj['members'];
+
+        for (let i =0; i<heroes.length; i++) {
+            const myArticle = document.createElement('article');
+            const myH2 = document.createElement('h2');
+            const myPara1 = document.createElement('p');
+            const myPara2 = document.createElement('p');
+            const myPara3 = document.createElement('p');
+            const myList = document.createElement('ul');
+
+            myH2.textContent = heroes['name'];
+            myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+            myPara2.textContent = 'Age: ' + heroes[i].age;
+            myPara3.textContent = 'Superpowers : '
+
+            const superPower = heroes['powers'];
+
+                for (let j=0; j<heroes[i]['powers'].length; j++) {
+                    let item = document.createElement('li');
+                    item.textContent = heroes[i]['powers'][j];
+                    myList.appendChild(item);
+                }
+            myArticle.appendChild(myH2);
+            myArticle.appendChild(myPara1);
+            myArticle.appendChild(myPara2);
+            myArticle.appendChild(myPara2);
+            myArticle.appendChild(myList);
+
+            section.appendChild(myArticle);
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zabawa ze stringami</title>
+</head>
+<body>
+
+<p class="lowerCase"></p>
+<p class="pierwszaDuza"></p>
+
+<script>
+
+    let pierwszy = document.querySelector('.lowerCase');
+    let drugi = document.querySelector('.pierwszaDuza');
+
+    let quote = 'I dO nOT lIke gREen eGgS anD HAM';
+    let male = quote.toLowerCase();
+    pierwszy.textContent = male;
+
+    let pom = male.charAt(0).toUpperCase();
+
+   let fixedQuote =pom + male.slice(1);
+    drugi.textContent = fixedQuote;
+
+
+
+</script>
+
+</body>
+</html>

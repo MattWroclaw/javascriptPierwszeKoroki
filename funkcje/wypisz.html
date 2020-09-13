@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wypisz</title>
+</head>
+<body>
+
+<p></p>
+<p class="pierwszy"></p>
+<p class="funkcja"></p>
+
+<section></section>
+<script>
+    let par = document.querySelector('p');
+    par.textContent = 'sprawdzenie';
+
+    let par1 = document.querySelector('.pierwszy');
+    par1.textContent = 'sprawdzenie pierwszy'
+
+    let parF = document.querySelector('.funkcja');
+    function fun() {
+        parF.textContent = 'sprawdzenie funkcja';
+    }
+
+    let crt = document.createElement('p');
+    // crt.textContent = 'sprawdzenie section - create element';
+    let rand = Math.floor(Math.random()*8);
+    crt.textContent = rand;
+
+    const sekcja = document.querySelector('section');
+    sekcja.appendChild(crt);
+
+    let names = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada']
+    let nam = document.createElement('p');
+    nam.textContent = names[rand];
+    sekcja.appendChild(nam);
+
+    function qr(){
+        let nam = document.createElement('p');
+        nam.textContent = names[rand];
+        sekcja.appendChild(nam);
+    }
+
+
+</script>
+</body>
+</html>

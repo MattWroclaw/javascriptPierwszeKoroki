@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Function start</title>
+    <style>
+        .msgBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 200px;
+            background: lightyellow;
+        }
+
+        .msgBox p {
+            line-height: 1.5;
+            padding: 10px 20px;
+            color: green;
+        }
+
+        .msgBox button {
+            background: none;
+            border: none;
+            position: absolute;
+            top: 10px;
+            right: 0;
+            font-size: 1.1rem;
+            color: sandybrown;
+        }
+
+    </style>
+</head>
+<body>
+<button>Display message box</button>
+
+<script>
+    function displayMessage(){
+        const html = document.querySelector('html');
+        const panel = document.createElement('div');
+        panel.setAttribute('class', 'msgBox');
+        html.appendChild(panel);
+
+        const msg = document.createElement('p');
+        msg.textContent = 'This is a message box';
+        panel.appendChild(msg);
+
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = 'zamknij';
+        panel.appendChild(closeBtn);
+
+        closeBtn.onclick = function (){
+            panel.parentNode.removeChild(panel);
+        }
+    }
+
+    function tst() {
+        const tab = document.createElement('div');
+        tab.setAttribute('class', 'msgBox');
+        const napis = document.createElement('p');
+        napis.textContent = 'test';
+        tab.appendChild(napis);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guzik alert prompt</title>
+</head>
+<body>
+
+<button>Press me</button>
+
+
+<script>
+    const guzik = document.querySelector('button');
+
+    guzik.onclick = function () {
+        let name = prompt("Jak masz na imie?");
+
+        alert('Czesc ' + name + ', miło Cie widzieć!' );
+    }
+
+</script>
+
+
+</body>
+</html>

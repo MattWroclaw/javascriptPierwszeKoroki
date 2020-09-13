@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Piaskownica canvas</title>
+</head>
+<body>
+<p >dupa</p>
+<canvas>
+
+</canvas>
+
+<script>
+    let para = document.querySelector('p');
+    para.textContent = 'test';
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const width = canvas.width = window.innerWidth;
+    const height = canvas.height = window.innerHeight;
+
+
+    function Pilka (x,y, velX, velY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.velX = velX;
+        this.velY = velY;
+        this.size = size;
+        this.color = color;
+    }
+
+    Pilka.prototype.rysuj = function () {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.arc(this.x, this.y, this.size, 0, 1.5*Math.PI);
+        ctx.fill();
+    }
+
+    let pil = new Pilka (500, 200, 1, 2, 155, 'blue');
+
+    pil.rysuj();
+</script>
+</body>
+</html>

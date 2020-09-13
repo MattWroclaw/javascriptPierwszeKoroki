@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set interval - przyklad z zegarkiem</title>
+</head>
+<style>
+    p {
+        font-family: sans-serif;
+    }
+</style>
+<body>
+<p class="clock"></p>
+
+<script>
+
+    function displayTime() {
+        let date = new Date();
+        let time = date.toLocaleTimeString();
+        document.querySelector('.clock').textContent = time;
+    }
+    displayTime();
+    const createClock = setInterval(displayTime, 100);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple async sync example</title>
+
+    <div>
+        Chodzi o to że jak się tak zrobi:
+        <p>
+        let response = fetch('myImage.png'); <br>
+        let blob = response.blob();<br>
+        // display your image blob in the UI somehow
+        </p>
+        Nie można tak zrobić, bo nie wiadomo ile czasu zajmie
+        ściągnięcie obrazka (albo wykonanie innej operacji).
+        Pierwsza linijka nie zwróci obiektu tak szybko. Natomiast
+        zaraz po pierwszej wykonywana jest druga, gdzie będzie
+        rzucony error. Bo 'response' jeszcze nie jest dostępne.
+    </div>
+</head>
+<body>
+
+<script>
+    console.log('Starting');
+    let image;
+
+    fetch('coffe.jpg').then((response) => {
+        console.log('It worked :) - pierwszy then');
+        return response.blob();
+    }).then((myBlob) => {
+        let objectURL = URL.createObjectURL(myBlob);
+        image = document.createElement('img');
+        image.src = objectURL;
+        document.body.appendChild(image);
+        console.log('All done :) '+image.src + ' displayed');
+    }).catch((error) =>{
+        console.log('Problem z ' + error.message);
+    });
+
+    console.log('All done :) - pod metodą fetch() '); // teraz działa dobrze..
+    // console.log('All done :) '+image.src + ' displayed'); // wywala error, bo img jeszcze się nie ściągnął
+
+</script>
+</body>
+</html>

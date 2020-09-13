@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Random color example — event handler property</title>
+    <style>
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<button>Change color</button>
+<p></p>
+<button onclick="zlyPrzyklad()">Tak nie robić</button>
+<script>
+    const btn = document.querySelector('button');
+
+    function random(number) {
+        return Math.floor(Math.random()*number);
+    }
+
+    function bgChange() {
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = rndCol;
+    }
+
+    btn.onmouseout = bgChange;
+
+    const par = document.querySelector('p');
+    function zlyPrzyklad(){
+        par.textContent = 'You can find HTML attribute equivalents for many of the event handler properties; however, you shouldn\'t use these — they are considered bad practice. It might seem easy to use an event handler attribute if you are just doing something really quick, but they very quickly become unmanageable and inefficient.';
+    }
+</script>
+</body>
+</html>

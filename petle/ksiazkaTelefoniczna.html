@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Ksiazka telfoniczna</title>
+    <style>
+        p {
+            color: purple;
+            margin: 0.5em 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+
+<label for="name">Look for who?</label>
+<input id="name" type="text" class="wpisaneImie">
+<input type="button" value="Szukaj" class="guzior">
+
+<section class="preview">
+
+</section>
+
+
+
+</body>
+<script>
+    let nazwisko = document.querySelector('.wpisaneImie');
+    let para = document.createElement('p');
+    let guzik = document.querySelector(".guzior");
+
+    let phonebook = [
+        { name : 'Chris', number : '1549' },
+        { name : 'Li Kang', number : '9634' },
+        { name : 'Anne', number : '9065' },
+        { name : 'Francesca', number : '3001' },
+        { name : 'Mustafa', number : '6888' },
+        { name : 'Tina', number : '4312' },
+        { name : 'Bert', number : '7780' },
+        { name : 'Jada', number : '2282' },
+    ]
+
+    // Add your code here
+guzik.addEventListener("click", function () {
+    let nazwiskoWpisane = nazwisko.value.toLowerCase();
+
+    for (let i = 0; i < phonebook.length; i++) {
+
+        if (phonebook[i].name.toLowerCase() === nazwiskoWpisane) {
+            para.textContent = phonebook[i].name + ' ' + phonebook[i].number;
+            break; // pamiętać o tym break!!!
+        } else {
+            para.textContent = 'nothing';
+        }
+    }
+});
+    // Don't edit the code below here!
+    let section = document.querySelector('section');
+    section.appendChild(para);
+
+
+</script>
+
+</html>

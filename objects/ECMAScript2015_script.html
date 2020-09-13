@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECMASCript 2015 Class</title>
+</head>
+<body>
+
+
+<script>
+    class Person {
+        constructor(first, last, age, gender, interests) {
+            this.name = {
+                first,
+                last
+            };
+
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+        }
+
+        greeting() {
+            console.log(`Hi! I'm ${this.name.first}`);
+        }
+
+        farewell() {
+            console.log(`${this.name.first} has left the building`);
+        }
+    }
+
+    let jakub = new Person('Jakub', 'Grocki', 35, 'm', ['rower', 'koszukowka']);
+    jakub.greeting();
+
+    class Teacher extends Person {
+        constructor(first, last, age, gender, interests, subject, grade) {
+            super(first, last, age, gender, interests,); // Now 'this' is initialized by calling the parent constructor.            this.subject = subject;
+            // super();
+            this.grade = grade;
+
+        //    do getterów i setterów
+            this._subject = subject;
+        //     We use _ to create a separate value in which
+            //     to store our name property. Without using this
+            //     convention, we would get errors every time
+            //     we called get or set
+
+        }
+
+        get subject() {
+            return this._subject;
+        }
+
+        set subject(newSubject) {
+            this._subject = newSubject;
+        }
+    }
+
+
+    // Instantiate Teacher
+
+    let snape = new Teacher('Severus', 'Snape', 58, 'male', ['Potions'], 'Dark arts', 5);
+    // Check the default value
+    console.log(snape.subject) // Returns "Dark arts"
+
+    // Change the value
+    snape.subject = "Balloon animals" // Sets subject to "Balloon animals"
+
+    // Check it again and see if it matches the new value
+    console.log(snape.subject) // Returns "Balloon animals"
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addEventListener removeEventListenr</title>
+</head>
+<body>
+<button class="one">Change colour one</button>
+<button class="two">Zmień kolor two</button>
+<p></p>
+<button class="three">Change colour three</button>
+<script>
+    const btn1 = document.querySelector('.one');
+    function random(number) {
+        return Math.floor(Math.random()*number);
+    }
+
+    function bgChange() {
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = rndCol;
+
+    }
+
+    btn1.removeEventListener('click', bgChange);
+    btn1.addEventListener('click', bgChange);
+    //-------------------------------------
+    const btn2 = document.querySelector('.two');
+
+    btn2.addEventListener('click', function () {
+        let colour = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = colour;
+
+    });
+
+    const par = document.querySelector('p');
+    btn2.addEventListener('click', function () {
+        par.textContent = 'dodanie drugiej funkcji do guzika';
+    });
+    //---------------------------------------
+    const btn3 = document.querySelector('.three');
+    function bgChange_eventObject(e) {
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        e.target.style.backgroundColor = rndCol;
+        console.log(e);
+    //    Here you can see that we are including an event object, e, in the function,
+        //    and in the function setting a background color style on e.target —
+        //    which is the button itself. The target property of the event object is always
+        //    a reference to the element that the event has just occurred upon.
+        //    So in this example, we are setting a random background color on the button, not the page.
+    }
+    btn3.addEventListener('click', bgChange_eventObject);
+</script>
+
+</body>
+</html>

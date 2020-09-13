@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+</head>
+
+<body>
+<p>This example requires you to enter commands in your browser's JavaScript console (see <a
+        href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are
+    browser developer tools</a> for more information).</p>
+
+</body>
+
+<script>
+// object literal
+    const person = {
+        name : ['Bob', 'Smith'],
+        age:23,
+        gender: 'male',
+        interests: ['music', 'sport'],
+        bio: function (){
+            alert(this.name[0] + ' '+ this.name[1] +
+                ' is ' + this.age + ' years old. He likes'+
+                this.interests[0] + ' and ' + this.interests[1]);
+        },
+        greeting: function () {
+            alert('Hi! I\'m ' + this.name[0]  + '.');
+
+        },
+
+    };
+
+    // tworzenie obiektu za pomocą funkcji
+    function createNewPerson(name) {
+        const obj = {};
+        obj.name = name;
+        obj.greeting = function () {
+            alert('hi, I\'m + ' + obj.name + '.')
+        }
+        return obj;
+    };
+
+    //    inny sposób, jako konstruktor. Tutaj ten kostruktor jest wersją klasy
+    // przy tworzeniu obiektu, pamiętać że jest jak w Java --> let obj = new Obj(par);
+    function PrePerson(name) {
+        this.name = name;
+        this.greeting = function () {
+            alert('Inny sposób na tworzenie. Hi, I\'m ' + this.name);
+        };
+    }
+
+    //    inny przykad konstruktora (analogicznie jak w Javie
+    function Person1(first, last, age, gender, slowa) {
+        this.name = {
+            first: first,
+            last: last
+        };
+        this.wiek = age;
+        this.gender = gender;
+        this.sl = slowa;
+        this.bio = function () {
+            alert(this.name.first + ' ' +
+                this.name.last + ' ma lat: ' + this.wiek +
+                ' ulubione słowo ' + this.sl[0]);
+        }
+        this.greeting = function () {
+            alert('Czesc, jestem ' + this
+                    .name.first + ' i mam ' + this.wiek + ' lat ' +
+                'lubie ' + slowa)
+        }
+    }
+
+</script>
+</html>

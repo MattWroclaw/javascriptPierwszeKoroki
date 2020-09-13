@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Przykład 1</title>
+</head>
+<body>
+<button>Zmien kolor</button>
+<script>
+    const  btn = document.querySelector('button');
+
+    function random(numer){
+        return Math.floor(Math.random()*(numer+1));
+    }
+
+    btn.onmouseenter = function (){
+        const  rndCol = 'rgb(' + random(225) + ',' +
+            random(225) + ',' + random(225) + ')';
+        document.body.style.backgroundColor = rndCol;
+    }
+</script>
+
+</body>
+</html>
