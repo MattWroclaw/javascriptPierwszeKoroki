@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async / Await class methods</title>
+</head>
+<body>
+
+<script>
+
+    class Person {
+        constructor(first, last, age) {
+            this.name = {
+                first,
+                last
+            };
+            this.age = age;
+        }
+
+        async greeting() {
+            return await Promise.resolve('Cześć, jestem '+this.name.first);
+        };
+    }
+
+    let zdzislaw = new Person('Zdzislaw', 'Denko', 45);
+
+    zdzislaw.greeting().then(console.log);
+</script>
+
+</body>
+</html>

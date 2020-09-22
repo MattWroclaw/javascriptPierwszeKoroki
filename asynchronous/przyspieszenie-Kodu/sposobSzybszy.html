@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szybszy sposob</title>
+</head>
+<body>
+
+
+<script>
+
+    function  timeOutPromise (interval) {
+        return new Promise((resolve, reject) => {
+            setTimeout(function (){
+                resolve('gotowe')
+            }, interval)
+        })
+    }
+
+    async function testTime (){
+        let timeOutPROMISE1 = timeOutPromise(1000);
+        let timoOutPROMISE2 = timeOutPromise(1000);
+        let timeOutPROMISE3 = timeOutPromise(1000);
+
+        await timeOutPROMISE1;
+        await timoOutPROMISE2;
+        await timeOutPROMISE3;
+    }
+
+    let startTime = Date.now();
+    testTime().then(() => {
+        let finishTime = Date.now();
+        let timeTaken = finishTime - startTime;
+        alert('Time in milis FAST ' + timeTaken);
+    })
+        .catch(e => {
+            console.log(e.message);
+        });
+
+    startTime();
+
+
+</script>
+</body>
+</html>

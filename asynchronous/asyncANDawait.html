@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async and await</title>
+</head>
+<body>
+<p>
+async function hello() { return "Hello" }; <br>
+hello();
+</p>
+<p>
+Jak jest async przed funkcją, to ona zwraca Promise.
+Zeby skonsumować wartość zwróconą przez taką funkcję,
+(a zwraca ona promise) używamy .then()
+</p>
+hello().then((value) => console.log(value)) lub
+hello().then(console.log)
+
+async każe funkcji zwracać promise zamiast warotści.
+<p>
+await --> działa tylko z async. Zatrzymuje  kod na tej lini
+aż promise jest fulfill a następnie zwraca otrzymaną wartość.
+W miedzyczasie inny kod może być wykonywany.
+</p>
+Przykład składni:
+<div>
+async function hello() {
+return greeting = await Promise.resolve("Czesc!");
+};
+<p>
+hello().then(alert);
+</p>
+
+
+</div>
+
+<script>
+<!--     po staremu-->
+    fetch('jakisObrazek.jpg')
+.then(response =>{
+    if (!response.ok) {
+        throw new Error(`HTTP error status ${response.status}`);
+    } else {
+        return response.blob();
+    }
+})
+.then(myBlob => {
+    let objectURL = URL.createObjectURL(myBlob);
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
+})
+.catch(e => {
+    console.log(e.message);
+});
+
+// inna metoda na to samo
+// async await
+
+async function  myFetch() {
+    let response = await fetch('kawa.jpg');
+    if (!response.ok) {
+        throw new Error(`HTTP error status ${response.status}`);
+    } else {
+        let myBlob = await response.blob();
+
+        let objectURL = URL.createObjectURL(myBlob);
+        let image = document.createElement('img');
+        image.src = objectURL;
+        document.body.appendChild(image);
+    }
+}
+
+ myFetch()
+.catch( e=> {
+    console.log(e.message);
+});
+
+
+</script>
+</body>
+</html>

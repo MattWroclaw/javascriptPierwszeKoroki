@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kod wolniejszy</title>
+</head>
+<body>
+
+<script>
+
+    function timeOutPromise(interval){
+        return new Promise((resolve, reject) => {
+            setTimeout(function (){
+                resolve("done");
+            } , interval);
+        });
+    }
+
+    async function timeTest(){
+        await timeOutPromise(1000);
+        await timeOutPromise(1000);
+        await timeOutPromise(1000);
+    }
+
+    let startTime = Date.now();
+    timeTest().then(() => {
+        let finishTime = Date.now();
+        let timeTaken = finishTime - startTime;
+        alert('Time taken in miliseconds SLOW ' + timeTaken);
+    })
+
+
+
+</script>
+</body>
+</html>

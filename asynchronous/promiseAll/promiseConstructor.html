@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise constructor</title>
+</head>
+<body>
+
+<script>
+    let timePromise_1 = new Promise((resolve,reject) => {
+        setTimeout(function (){
+            resolve('Sukces!');
+        }, 1500);
+    });
+//    resolve() , reject() to funkcje ktore spełniają lub odrzucają nową obietnię
+
+    //można tak:
+    // timePromise_1.then((message) => {
+    //     alert(message);
+    // })
+
+//    a to można srkórcić to takiej formy
+    timePromise_1.then(alert);
+
+    function timeOutPromise_2(message, interval) {
+        return new Promise((resolve, rejcet) => {
+            if (message === '' || typeof message !== 'string'){
+                rejcet('Message is empty or not a string');
+            } else if (interval <0 || typeof interval !== 'number') {
+                rejcet('Interval is negative or nor a number');
+            } else {
+                setTimeout( function (){
+                    resolve(message);
+                }, interval);
+            }
+        });
+    }
+
+    timeOutPromise_2('czesc', -3000)
+    .then(message => {
+        alert(message);
+    })
+    .catch(e => {
+        console.log('error... ' +e);
+    })
+</script>
+
+</body>
+</html>
