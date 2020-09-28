@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping list example</title>
+    <style>
+        li {
+            margin-bottom: 10px;
+        }
+
+        li button {
+            font-size: 18px;
+            margin-left: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>My shopping list</h1>
+
+<div>
+    <label for="item">Enter new item</label>
+    <input type="text" name="item" id="item">
+    <button>Add item</button>
+</div>
+
+<ul>
+
+</ul>
+
+<script>
+    const lista = document.querySelector('ul');
+    const wpis = document.querySelector('input');
+    const guzik = document.querySelector('button');
+
+
+    function baza() {
+        let artykul = wpis.value;
+        if (artykul !== '') {
+
+            wpis.value = '';
+
+            let kropka = document.createElement('li');
+            let guzikDel = document.createElement('button');
+            let span_ = document.createElement('span');
+            kropka.appendChild(span_);
+            kropka.appendChild(guzikDel);
+
+            span_.textContent = artykul;
+            guzikDel.textContent = 'Kasuj';
+
+            lista.appendChild(kropka);
+
+            guzikDel.addEventListener('click', function () {
+                lista.removeChild(kropka);
+            });
+
+            wpis.focus();
+
+        }
+    }
+
+    guzik.addEventListener('click', baza);
+    // zeby po nacisnieciu Enter tez mozna bylo wprowadzac dane
+    window.onkeydown = function (ev) {
+        if (ev.keyCode === 13) {
+            baza();
+        }
+    }
+
+</script>
+</body>
+</html>

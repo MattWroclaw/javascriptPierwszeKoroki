@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prosty przykład Document Object Model </title>
+
+<!--    inny sposób na manipulowanie dynamiczne stylami-->
+    <style>
+        .highlight {
+            color: white;
+            background-color: black;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+<section>
+    <img src="mercedes.jpeg" alt="Piękny samochód">
+    <p>Tutaj się doda linkt do <a href="https://www.mozilla.org">
+        strony Mozilli :)
+    </a> </p>
+</section>
+
+<script>
+    const zdjecie = document.querySelector('img');
+    zdjecie.style.width = '400px';
+
+    const link = document.querySelector('a');
+    link.textContent  = 'Mozilla Developer Network';
+    link.href = 'https://developer.mozilla.org';
+
+    const sect = document.querySelector('section');
+    const para = document.createElement('p');
+    para.textContent = 'We hope you enjoyed the ride.';
+    sect.appendChild(para);
+
+    const text  = document.createTextNode(' - the premier' +
+        ' source for web dev. knowledge');
+    const linkPara = document.querySelector('p');
+    linkPara.appendChild(text);
+
+    // sect.appendChild(para); --> tak się nie da dodać
+    // drugiego takiego samego paragrafu. Trzeba użyć
+    // Node.cloneNode()
+   let nowyPar =  sect.cloneNode(linkPara);
+    sect.appendChild(nowyPar);
+
+   // usuwanie na 2 sposoby:
+   // sect.removeChild(nowyPar);
+    nowyPar.remove();
+
+    para.style.color = 'red';
+    para.style.backgroundColor = 'black';
+    para.style.padding = '10px';
+    para.style.width = '250px';
+    para.style.textAlign = 'center';
+
+//     inny sposób na monipulowanie sylami
+    let manipulowanieAtrybutami = document.createElement('p');
+    manipulowanieAtrybutami.textContent = 'manipulowanie atrybutami';
+    sect.appendChild(manipulowanieAtrybutami);
+    manipulowanieAtrybutami.setAttribute('class', 'highlight');
+
+
+</script>
+
+</body>
+</html>

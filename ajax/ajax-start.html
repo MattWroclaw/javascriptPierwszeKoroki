@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Ajax starting point</title>
+
+    <style>
+
+        html, pre {
+            font-family: Arimo;
+        }
+        body {
+            width: 500px;
+            margin: 0 auto;
+            background-color: #FFC125;
+        }
+
+        pre {
+           line-height: 1.5;
+            letter-spacing: 0.05rem;
+            padding: 1rem;
+            background-color: #eeeeee;
+        }
+
+        label {
+            width: 200px;
+            margin-right: 33px;
+        }
+
+        select{
+            width: 350px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Ajax starting point z wykorzystaniem XHR</h1>
+
+<form>
+    <label for="verse-choose">Choose a verse</label>
+    <select id="verse-choose" name="verse-choose">
+        <option>Verse 1</option>
+        <option>Verse 2</option>
+        <option>Verse 3</option>
+        <option>Verse 4</option>
+    </select>
+</form>
+
+<h2>The conc worm, <em>edgar ala poe</em> </h2>
+
+<pre>
+
+</pre>
+
+<script>
+const verseChoose = document.querySelector('select');
+const poemDisplay = document.querySelector('pre');
+
+verseChoose.onchange = function () {
+    const verse = verseChoose.value;
+    updateDisplay(verse);
+}
+
+function updateDisplay(verse) {
+    verse = verse.replace(' ','');
+    verse = verse.toLowerCase();
+    let url = verse + '.txt';
+
+    let request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.responseType = 'text';
+
+    request.onload = function (){ // onload to event handler. Uruchamia sie gdy data są załadowane
+        poemDisplay.textContent = request.response;
+    }
+    request.send(); // send uruchamia powyższy kod
+}
+// updateDisplay('Verse 1');
+// verseChoose.value = 'Verse 1';
+
+
+//***************************
+// przeczytać Serving expl fm local server
+// Fetch https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Window resize example</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            background-image: url(https://raw.githubusercontent.com/mdn/learning-area/master/javascript/apis/document-manipulation/bgtile.png);
+            border: 10px solid white;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+
+</div>
+
+<script>
+const div = document.querySelector('div');
+let winWidth = window.innerWidth;
+let winHeight = window.innerHeight;
+
+div.style.width = winWidth + 'px';
+div.style.height = winHeight + 'px';
+
+// póki co div dopasowuje się do rozm. viewport.
+// Ale jak się zmieni rozmiar, to on zostaje stały
+
+// Teraz chcemy żeby się dynamicznie zmieniał,
+// jak zmienia się rozmiar okna (wykorzystamy Window.onresize
+
+window.onresize = function () {
+    winWidth = window.innerWidth;
+    winHeight = window.innerHeight;
+
+    div.style.width = winWidth +'px';
+    div.style.height = winHeight +'px';
+}
+
+</script>
+</body>
+</html>
