@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube API example</title>
+</head>
+<body>
+<h1>YouTub video search</h1>
+
+<div class="controls">
+    <form>
+        <p>
+        <label for="search">Enter search term (req)</label>
+        <input type="text" id="search" class="search" required>
+        </p>
+        <button class="submit">Submit search</button>
+    </form>
+</div>
+
+<div class="results">
+    <section>
+
+    </section>
+</div>
+<!--YouTube data API-->
+<script src="https://apis.google.com/js/client.js" type="text/javascript"></script>
+
+<!--YouTube Iframe Player API-->
+<script src="https://www.youtube.com/iframe_api" type="text/javascript"></script>
+<script>
+    var seachTerm = document.querySelector('.search');
+    var seachForm = document.querySelector('form');
+    var submitBtn = document.querySelector('.submit');
+
+    var section = document.querySelector('section');
+
+    // When the window (tab) has finished loading, run onClientLoad() to get
+    // It all started
+    window.onload = onClientLoad;
+
+//    ładujemy i odpalamy API a nast. funkcję onYouTubeApiLoad()
+    function onClientLoad() {
+        gapi.cliet.load('youtube', 'v3', onYouTubeApiLoad);
+    }
+
+//    załaczamy klucz API
+
+
+
+</script>
+
+</body>
+</html>
