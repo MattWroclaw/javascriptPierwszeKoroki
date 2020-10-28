@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas poczatki</title>
+    <!--
+            żeby pozbyć się scroll barów usuwamy marignesy
+                chodzi o to że <body> posiada margines, który po dodaniu do
+                 naszego full-window-size canvas sprawia, ze dokument jest szerszy
+                 niż okno.
+                 Dlatego trzeba pozbyć się marginesów oraz dodać overflow na hidden
+                 -->
+        <style>
+               body {
+                margin: 0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+
+    <canvas class="myCanvas">
+        <p>Twoja przglądarka nie wspiera
+            <stron>canvas</stron>
+            Boo!
+        </p>
+
+    </canvas>
+
+
+    <script>
+        const canvas = document.querySelector('.myCanvas');
+        //to sprawi, że canvas zapełni całe okno przeglądarki
+        const width = canvas.width = window.innerWidth;
+        const height = canvas.height = window.innerHeight;
+        //    można zrbić tak że wiele zmienych jest równe tej samej wartości
+
+    //    tworzymy kontext, aby móc sie do niego odnieść jako do referencji
+        const ctx = canvas.getContext('2d');
+
+        //tło
+        ctx.fillStyle = 'rgb(0,0,0,)';
+        ctx.fillRect(0,0,width,height);
+
+
+        ctx.fillStyle = 'rgb(225,0,0)';
+        ctx.fillRect(10,10, 100, 100);
+
+        ctx.fillStyle = 'rgb(0,225,0)';
+        ctx.fillRect(75,75,100,100);
+
+        ctx.fillStyle = 'rgba(0, 0, 225, 0.4)';
+        ctx.fillRect(25,100,175,50)
+
+    //    strokes
+        ctx.strokeStyle = 'rgb(225,225,225)';
+        ctx.lineWidth = 15;
+        ctx.strokeRect(25,25,175,200);
+
+
+    </script>
+    </body>
+    </html>

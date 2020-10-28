@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odtwarzacz muzyki</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<div class="musicPlayer">
+    <video controls>
+        <source src="audio/Jestem_chory.mp3" type="audio/mp3">
+    </video>
+
+    <div class="controlGear">
+        <button class="play" data-icon="P" aria-label="graj pauza"></button>
+        <button class="stop" data-icon="S" aria-label="stop"></button>
+        <div class="timer">
+            <div></div>
+            <span aria-label="czas utworu">00:00</span>
+        </div>
+        <button class="wstecz" data-icon="B" aria-label="cofnij"></button>
+        <button class="przod" data-icon="F" aria-label="przewin do przodu"></button>
+    </div>
+</div>
+<script src="odtwarzacz.js"></script>
+</body>
+</html>

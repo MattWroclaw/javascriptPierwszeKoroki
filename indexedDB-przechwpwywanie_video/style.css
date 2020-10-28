@@ -1,0 +1,29 @@
+html{
+    font-family: sans-serif;
+}
+
+body{
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+header, footer {
+    background-color: green;
+    color: gold;
+    line-height: 100px;
+    padding: 0 20px;
+}
+
+article {
+    background-color: #5E2612;
+}
+
+video {
+    margin: 0 auto;
+    border: 1px solid black;
+    display: block;
+}
+
+button {
+    display: block;
+}

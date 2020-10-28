@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Obracajacy sie rysunek</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body>
+
+<canvas class="myCanvas">
+    <p>Brak obsługi canvas</p>
+</canvas>
+
+<script>
+    const canvas = document.querySelector('.myCanvas');
+    const szerokosc = canvas.width = window.innerWidth;
+    const wysokosc = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, szerokosc, wysokosc);
+
+    //przesunięcie początku współrzędnych (nie top left cnr)
+    ctx.translate(szerokosc / 2, wysokosc / 2);
+
+    function degToRad(degrees) {
+        return degrees * Math.PI / 180;
+    }
+
+    function rand(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    let length = 250;
+    let moveOffset = 20;
+
+
+    let image = new Image();
+    image.src = 'gwiazdka.bmp'
+    image.onload = function () {
+
+        for (let i = 0; i < length; i++) {
+
+            ctx.drawImage(image, i, i);
+            //ctx.drawImage(image,250,250, 185,175,50,50,185,175);
+
+            length--;
+            moveOffset += 4;
+            ctx.rotate(degToRad(5));
+
+        }
+    }
+
+
+    // ctx.fillStyle = 'rgba(' + (255-length) +',0' + (255-length)+ ',0.9)';
+    // ctx.beginPath();
+    // ctx.moveTo(moveOffset, moveOffset);
+    // ctx.lineTo(moveOffset+length, moveOffset);
+    // let triHeight = length/2 * Math.tan(degToRad(60));
+    // ctx.lineTo(moveOffset+(length/2), moveOffset+triHeight);
+    // ctx.lineTo(moveOffset, moveOffset);
+    // ctx.fill();
+
+
+</script>
+
+</body>
+</html>

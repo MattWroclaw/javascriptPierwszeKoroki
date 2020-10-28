@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animacje z wykorzystaniem requestAnimationFrame</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body>
+<canvas class="myCanvas">
+    <p>przeglądarka nie wspiera canvas</p>
+</canvas>
+
+<script>
+    const canvas = document.querySelector('.myCanvas');
+    const szerokosc = canvas.width = window.innerWidth;
+    const wysokosc = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'black';
+    // ctx.fillRect(0, 0, szerokosc, wysokosc);
+
+    ctx.translate(szerokosc/2 , wysokosc/2);
+    let image = new Image();
+    image.src = 'gwiazdki-sekwencja.bmp';
+    image.onload = draw;
+
+    let sprite = 0;
+    let posX =0;
+
+    function draw() {
+        ctx.fillRect(-(szerokosc/2), -(wysokosc/2), szerokosc, wysokosc);
+        ctx.drawImage(image, (sprite*84), 0, 84, 86, 0+posX, -86, 84, 86 );
+        // ctx.rotate(45);
+
+
+        if(posX %80 ===0) {
+            if (sprite ===5) {
+                sprite=0
+            } else {
+                sprite++;
+            }
+        }
+
+        if(posX >szerokosc/2) {
+            newStartPos = -((szerokosc/2) + 84);
+            posX = Math.ceil(newStartPos);
+            console.log(posX);
+        } else {
+            posX += 1;
+        }
+
+        window.requestAnimationFrame(draw);
+    };
+
+    draw();
+</script>
+</body>
+</html>

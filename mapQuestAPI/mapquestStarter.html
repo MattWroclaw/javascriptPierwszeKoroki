@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="utf-8">
+    <title>Mapquest example</title>
+    <style>
+        #map {
+            width: 700px;
+            height: 700px;
+        }
+    </style>
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <script>
+        // 1. The basic part of the example
+        var L;
+
+        window.onload = function() {
+            L.mapquest.key = 'zwIP5XgnZrqG2OGmp9gpoaUV6Evt67Zo';
+
+            // 'map' refers to a <div> element with the ID map
+            var map = L.mapquest.map('map', {
+                center: [51.1, 17.05],
+                layers: L.mapquest.tileLayer('light'),
+                zoom: 12
+            });
+
+            L.marker([51.1,17.05], {
+               icon: L.mapquest.icons.marker({
+                   primaryColor: '#22407F',
+                   secondaryColor: '#3FFF98',
+                   shadow: true,
+                   size: 'md',
+                   symbol: 'B'
+               })
+            }).bindPopup('Piekny Wrocław')
+            .addTo(map);
+
+            map.addControl(L.mapquest.control({position: 'bottomright'}));
+            // map.addControl(L.mapquest.searchControl());
+            map.addControl(L.mapquest.satelliteControl());
+            map.addControl(L.mapquest.trafficControl({
+                className: '',
+                colors: {
+                    low: '#1ca747',
+                    medium: '#feeb41',
+                    high: '#df0021',
+                    closed: '#0c0000'
+                },
+                construction: true,
+                flow: true,
+                incidents: true,
+                position: 'topright',
+                markets: true,
+                title: 'Traffic'
+            }));
+
+            // let directionsControl = L.mapquest.directionsControl({
+            //     className: 'direkszyn',
+            //     directions: {
+            //         options: {
+            //             timeOverage: 25,
+            //             doReverseGeocode: true,
+            //         }
+            //     },
+            //     directionsLayer: {
+            //         startMarker: {
+            //             title: 'Drag to change location',
+            //             draggable: true,
+            //             icon: 'marker-start',
+            //             iconOptions: {
+            //                 size: 'sm'
+            //             }
+            //         },
+            //         endMarker: {
+            //             draggable: true,
+            //             title: 'Drag to change location',
+            //             icon: 'marker-end',
+            //             iconOptions: {
+            //                 size: 'sm'
+            //             }
+            //         },
+            //         viaMarker: {
+            //             title: 'Drag to change route'
+            //         },
+            //         routeRibbon: {
+            //             showTraffic: true
+            //         },
+            //         alternateRouteRibbon: {
+            //             showTraffic: true
+            //         },
+            //         paddingTopLeft: [450, 20],
+            //         paddingBottomRight: [180, 20],
+            //     },
+            //     startInput: {
+            //         compactResults: true,
+            //         disabled: false,
+            //         location: {},
+            //         placeholderText: 'Starting point or click on the map...',
+            //         geolocation: {
+            //             enabled: true
+            //         },
+            //         clearTitle: 'Remove starting point'
+            //     },
+            //     endInput: {
+            //         compactResults: true,
+            //         disabled: false,
+            //         location: {},
+            //         placeholderText: 'Destination',
+            //         geolocation: {
+            //             enabled: true
+            //         },
+            //         clearTitle: 'Remove this destination'
+            //     },
+            //     addDestinationButton: {
+            //         enabled: true,
+            //         maxLocations: 10,
+            //     },
+            //     routeTypeButtons: {
+            //         enabled: true,
+            //     },
+            //     reverseButton: {
+            //         enabled: true,
+            //     },
+            //     optionsButton: {
+            //         enabled: true,
+            //     },
+            //     routeSummary: {
+            //         enabled: true,
+            //         compactResults: false,
+            //     },
+            //     narrativeControl: {
+            //         enabled: true,
+            //         compactResults: false,
+            //         interactive: true,
+            //     }
+            // }).addTo(map);
+
+        }
+
+
+    </script>
 </head>
 <body>
-$END$
+<h1>Simple Mapquest example</h1>
+
+<div id="map"></div>
 </body>
 </html>

@@ -10,8 +10,8 @@
 <div class="controls">
     <form>
         <p>
-        <label for="search">Enter search term (req)</label>
-        <input type="text" id="search" class="search" required>
+            <label for="search">Enter search term (req)</label>
+            <input type="text" id="search" class="search" required>
         </p>
         <button class="submit">Submit search</button>
     </form>
@@ -27,9 +27,10 @@
 
 <!--YouTube Iframe Player API-->
 <script src="https://www.youtube.com/iframe_api" type="text/javascript"></script>
+
 <script>
-    var seachTerm = document.querySelector('.search');
-    var seachForm = document.querySelector('form');
+    var searchTerm = document.querySelector('.search');
+    var searchForm = document.querySelector('form');
     var submitBtn = document.querySelector('.submit');
 
     var section = document.querySelector('section');
@@ -38,13 +39,93 @@
     // It all started
     window.onload = onClientLoad;
 
-//    ładujemy i odpalamy API a nast. funkcję onYouTubeApiLoad()
+    //    ładujemy i odpalamy API a nast. funkcję onYouTubeApiLoad()
     function onClientLoad() {
-        gapi.cliet.load('youtube', 'v3', onYouTubeApiLoad);
+        gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
     }
 
-//    załaczamy klucz API
+    //    załaczamy klucz API
 
+    function onYouTubeApiLoad() {
+        gapi.client.setApiKey('AIzaSyBbLvIh6pIdP9ydOeZ8oGxu_iZjcnGaLIw');
+
+        //do forum podłączamy eventListener
+        searchForm.addEventListener('submit', search);
+    }
+
+    //    jak się podepinie eventListener fo form to można przeprowadzać
+    //    szukanie, funkcja search();
+
+    function search(e) {
+        //    jak zwykle, preventDefault(), aby wstrzymać przed przesyłaniem formularza
+        e.preventDefault();
+
+        //    tworzymy request na podstawie API
+        var request = gapi.client.youtube.search.list({
+            //    jakiego rodzaju dane mają być zawarte
+            part: 'snippet',
+            //    ile wyników ma przyjść
+            maxResults: 10,
+            //    wartość której szukamy
+            q: searchTerm.value
+        });
+
+        //    wysyłamy requesta i okreslamy funkcję, która ma być użyta
+        //    kiedy response zostanie zwrócona
+        request.execute(onSearchResponse);
+    }
+
+
+    //    ta funkcja ma automatycznie przekazane w parametrze response
+    function onSearchResponse(response) {
+        //    opróżniamy element <section> czyli standard
+        while (section.firstChild) {
+            section.removeChild(section.firstChild);
+        }
+        // wyniki szukania przechowujemy w zmiennej
+        var results = response.items;
+
+        //    iterujemy listę i uruchamianmy displyVideo() na każdym
+        for (var i = 0; i<results.length; i++) {
+            displayVideo(results[i], i);
+        }
+    }
+
+    function displayVideo(result, i) {
+        //    tworzymy div z id=i i dołączamy to do sekcji
+        //    YouTube iFrame Player API zastąpi każdy na <iframe> w którym będzie odpowiednie video
+        var vid = document.createElement('div');
+        var vidId = 'vid' + i;
+         vid.id = vidId;
+        section.appendChild(vid);
+
+        //    wykorzystujemy  konstruktor YT.Player() aby stworzyć nowy video player object
+        //    określamy ID elementu który ma być zamieniony przez <div>
+        //    wysokość, szerokość, eventHandler aby obsłużyć nasz onReady event
+
+        var player = new YT.Player(vidId, {
+            height: '360',
+            width: '480',
+            videoId: result.id.videoId,
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+
+        //    w funkcji onPlayerReady() pobieramy ID z każdego video i sprawdzamy ile trwa
+        //    jeśli długość =0 ot nie można go wyświetlić i go kasujemy
+        function onPlayerReady(e) {
+            var myId = e.target.a.id;
+            var duration = e.target.getDuration();
+            if (duration === 0) {
+                console.log('Video id: ' + myId + ' nie mogło być wyświetlone');
+                section.removeChild(e.target.a);
+            } else {
+                var myId = e.target.a.id;
+                console.log('Wyswietlam ' + myId);
+            }
+        }
+    }
 
 
 </script>

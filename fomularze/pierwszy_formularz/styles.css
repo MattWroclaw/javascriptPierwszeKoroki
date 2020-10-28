@@ -1,0 +1,62 @@
+form {
+/*    centrujemy formularz na stronie*/
+    margin: 0 auto;
+    width: 400px;
+/*    form outline*/
+    padding: 2em;
+    border: 2px solid darkmagenta;
+    border-radius: 1em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+form li + li {
+    margin-top: 1em;
+}
+
+label{
+/*    uniform size & alignment*/
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+ input, textarea {
+ /*    ujednolicenie textu*/
+     font: 1em "DejaVu Sans Condensed";
+
+ /*    ujednolicenie text field size*/
+     width: 300px;
+     box-sizing: border-box;
+
+ /*    Match form field borders*/
+     border: 2px skyblue solid;
+ }
+
+ input:focus, textarea:focus {
+ /*    dodatkowe podświetlenie dla focused*/
+     border-color: blue;
+ }
+
+ textarea {
+     /* Align multiline text fields with their labels */
+     vertical-align: top;
+
+     /* Provide space to type some text */
+     height: 5em;
+ }
+
+ .button {
+ /*    allign button with the text fields*/
+     padding-left: 90px; /* taki sam rozmiar jak labeli */
+
+ }
+
+button {
+    /* This extra margin represent roughly the same space as the space
+       between the labels and their text fields */
+    margin-left: .5em;
+}

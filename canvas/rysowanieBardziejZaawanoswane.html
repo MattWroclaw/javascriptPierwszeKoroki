@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rysowanie bardziej zaawansowane</title>
+<style>
+    body{
+        margin: 0;
+        overflow: hidden;
+    }
+</style>
+</head>
+<body>
+
+<canvas class="myCanvas">
+<p>Twoja przeglądarka nie wspiera Canvas</p>
+</canvas>
+
+
+<script>
+    const canvas = document.querySelector('.myCanvas');
+    const width = canvas.width = window.innerWidth;
+    const height = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'rgb(1,100,200)';
+    ctx.fillRect(0,0,width,height);
+
+    ctx.strokeStyle = 'rgb(1,2000,250)';
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+//    połącz linię
+    ctx.lineTo(200,200);
+    ctx.stroke();
+
+
+    function degToRad(degrees) {
+        return degrees * Math.PI /180;
+    }
+
+    //trójkącik
+    ctx.fillStyle = 'rgb(255,0,0)';
+    ctx.beginPath();
+    ctx.moveTo(50,50); //początek rysowania
+    ctx.lineTo(150,50);
+    let  triHeoght = 50* Math.tan(degToRad(60));
+    ctx.lineTo(100, 50 + triHeoght);
+    ctx.lineTo(50,50);
+    ctx.fill();
+
+//    kółko
+    ctx.fillStyle = 'rgb(100,200,225)';
+    ctx.beginPath();
+    ctx.arc(210,180,50,0,degToRad(360), false);
+    ctx.fill();
+
+    ctx.fillStyle = 'yellow';
+    ctx.beginPath();
+    ctx.arc(250,180,50,degToRad(-45),degToRad(45),true);
+    ctx.lineTo(250,180);
+    ctx.fill();
+
+</script>
+</body>
+</html>

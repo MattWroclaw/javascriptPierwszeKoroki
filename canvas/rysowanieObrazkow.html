@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rysowanie obrazkow w canvas</title>
+
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<canvas class="myCanvas">
+    <p>Brak obsługi canvas</p>
+</canvas>
+
+<script>
+    const canvas = document.querySelector('.myCanvas');
+    const szerokosc = canvas.width = window.innerWidth;
+    const wysokosc = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0,szerokosc,wysokosc);
+
+    let image = new Image();
+    image.src = 'https://raw.githubusercontent.com/mdn/learning-area/master/javascript/apis/drawing-graphics/getting-started/firefox.png';
+    image.onload = function () {
+        ctx.drawImage(image,50,50);
+        //ctx.drawImage(image,250,250, 185,175,50,50,185,175);
+
+    }
+
+
+</script>
+</body>
+</html>

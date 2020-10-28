@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text w canvas</title>
+<style>
+    body{
+        margin: 0;
+        overflow: hidden;
+    }
+</style>
+</head>
+<body>
+
+<canvas class="myCanvas">
+    <p> Nie można canvas ? :( </p>
+</canvas>
+
+<script>
+    const canvas = document.querySelector('.myCanvas');
+    const szerokosc = canvas.width = window.innerWidth;
+    const wysokosc = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0,szerokosc,wysokosc);
+
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.font = '36px arial';
+    ctx.strokeText('36pixel ARIAL', 50,50);
+
+    ctx.fillStyle = 'red';
+    ctx.font = '48px georgia';
+    ctx.fillText('48px georgia', 50,100);
+
+</script>
+
+</body>
+</html>
